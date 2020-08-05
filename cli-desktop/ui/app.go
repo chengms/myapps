@@ -3,9 +3,10 @@ package ui
 import (
     "fyne.io/fyne"
     "fyne.io/fyne/app"
+    "fyne.io/fyne/canvas"
     "fyne.io/fyne/layout"
     "fyne.io/fyne/theme"
-    "fyne.io/fyne/widget"
+    "image/color"
 )
 
 type WinApp struct {
@@ -13,53 +14,46 @@ type WinApp struct {
 }
 
 
-func (a *WinApp) Init(){
-    a.UiApp = app.New()
+func (w *WinApp) Init(){
+    w.UiApp = app.New()
 
     // resource
-    a.UiApp.SetIcon(theme.FyneLogo())
+    w.UiApp.SetIcon(theme.FyneLogo())
 
 }
 
 
-func (a *WinApp) StartApp()  {
-    a.StartLogin()
+func (w *WinApp) StartApp()  {
+    w.StartLogin()
 
-    //myWindow := a.UiApp.NewWindow("Container")
-    //
-    //text1 := canvas.NewText("Hello", color.White)
-    //text2 := canvas.NewText("There", color.White)
-    //text2.Move(fyne.NewPos(20, 20))
-    //text3 := canvas.NewText("World", color.White)
-    //container := fyne.NewContainer(text1, text2, text3)
-    ////	container := fyne.NewContainerWithLayout(layout.NewGridLayout(2),
-    ////		text1, text2, text3)
-    //
-    //myWindow.SetContent(container)
-    //myWindow.ShowAndRun()
+    myWindow := w.UiApp.NewWindow("Container")
+
+    text1 := canvas.NewText("Hello", color.White)
+    text2 := canvas.NewText("There", color.White)
+    text2.Move(fyne.NewPos(20, 20))
+    text3 := canvas.NewText("World", color.White)
+    container := fyne.NewContainer(text1, text2, text3)
+    //	container := fyne.NewContainerWithLayout(layout.NewGridLayout(2),
+    //		text1, text2, text3)
+
+    myWindow.SetContent(container)
+    myWindow.ShowAndRun()
 
 }
 
-func (a *WinApp) StartLogin()  {
-    LoginWin := a.UiApp.NewWindow("Login")
+func (w *WinApp) StartLogin()  {
+    //LoginWin := w.UiApp.NewWindow("Login")
+    myWindow := w.UiApp.NewWindow("Box Layout")
 
-    // set win title
-    LoginWin.SetTitle("Login")
+    text1 := canvas.NewText("Hello", color.Black)
+    text2 := canvas.NewText("There", color.Black)
+    text3 := canvas.NewText("(right)", color.Black)
+    container := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
+        text1, text2, layout.NewSpacer(), text3)
 
-    widget.NewLabelWithStyle("Welcome to the Fyne toolkit demo app", fyne.TextAlignCenter, fyne.TextStyle{Bold: true}),
-        widget.NewHBox(layout.NewSpacer(), logo, layout.NewSpacer()),
-
-        widget.NewHBox(layout.NewSpacer(),
-            widget.NewHyperlink("fyne.io", parseURL("https://fyne.io/")),
-            widget.NewLabel("-"),
-            widget.NewHyperlink("documentation", parseURL("https://fyne.io/develop/")),
-            widget.NewLabel("-"),
-            widget.NewHyperlink("sponsor", parseURL("https://github.com/sponsors/fyne-io")),
-            layout.NewSpacer(),
-        ),
-
-
-
-    // show this window
-    LoginWin.ShowAndRun()
+    text4 := canvas.NewText("centered", color.Black)
+    centered := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
+        layout.NewSpacer(), text4, layout.NewSpacer())
+    myWindow.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), container, centered))
+    myWindow.ShowAndRun()
 }
