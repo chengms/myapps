@@ -6,6 +6,7 @@ import (
     "fyne.io/fyne/canvas"
     "fyne.io/fyne/layout"
     "fyne.io/fyne/theme"
+    "fyne.io/fyne/widget"
     "image/color"
 )
 
@@ -42,18 +43,54 @@ func (w *WinApp) StartApp()  {
 }
 
 func (w *WinApp) StartLogin()  {
-    //LoginWin := w.UiApp.NewWindow("Login")
-    myWindow := w.UiApp.NewWindow("Box Layout")
+    LoginWin := w.UiApp.NewWindow("Login")
 
-    text1 := canvas.NewText("Hello", color.Black)
-    text2 := canvas.NewText("There", color.Black)
-    text3 := canvas.NewText("(right)", color.Black)
-    container := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
-        text1, text2, layout.NewSpacer(), text3)
+    // set windows size
+    LoginWin.Resize(fyne.NewSize(500,400))
+    // show center a window on the screen
+    LoginWin.CenterOnScreen()
 
-    text4 := canvas.NewText("centered", color.Black)
-    centered := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),
-        layout.NewSpacer(), text4, layout.NewSpacer())
-    myWindow.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), container, centered))
-    myWindow.ShowAndRun()
+    // 创建一个盒子
+    content := widget.NewHBox()
+    content.CreateRenderer()
+
+    loginImg := canvas.NewImageFromFile("./cli-desktop/img/login.png")
+    loginImg.SetMinSize(fyne.NewSize(500, 200))
+    // 创建水平布显示图片
+    loginImgCnt := widget.NewVBox(loginImg)
+    // 创建水平布局将图片部件显示在主框中
+    containerImg := fyne.NewContainerWithLayout(layout.NewHBoxLayout(), loginImgCnt)
+
+    // 文字，登录框
+    // username
+    userNameText := canvas.NewText("用户名: ", color.Black)
+    // 输入框
+    userNameInput := widget.NewEntry()
+    userNameInput.SetPlaceHolder(" 请输入用户名             ")
+    // 水平布局
+    containerUsr := fyne.NewContainerWithLayout(layout.NewHBoxLayout(), layout.NewSpacer(), userNameText, userNameInput, layout.NewSpacer(), )
+
+    // password
+    PasswordText := canvas.NewText("密  码: ", color.Black)
+    // 输入框
+    passwordInput := widget.NewPasswordEntry()
+    // 水平布局
+    containerPassword := fyne.NewContainerWithLayout(layout.NewHBoxLayout(), layout.NewSpacer(), PasswordText, passwordInput, layout.NewSpacer())
+
+    // 登录按键
+
+
+    // 注册
+
+    // 加载布局
+    LoginWin.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), containerImg, containerUsr, containerPassword))
+    LoginWin.ShowAndRun()
 }
+
+//dialog.ShowCustomConfirm("Login...", "Log In", "Cancel", content, func(b bool) {
+//    if !b {
+//        return
+//    }
+//
+//    log.Println("Please Authenticate", username.Text, password.Text)
+//}, win)
