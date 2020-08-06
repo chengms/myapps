@@ -1,6 +1,7 @@
 package ui
 
 import (
+    "fmt"
     "fyne.io/fyne"
     "fyne.io/fyne/app"
     "fyne.io/fyne/canvas"
@@ -8,6 +9,8 @@ import (
     "fyne.io/fyne/theme"
     "fyne.io/fyne/widget"
     "image/color"
+
+
 )
 
 type WinApp struct {
@@ -66,24 +69,52 @@ func (w *WinApp) StartLogin()  {
     userNameText := canvas.NewText("用户名: ", color.Black)
     // 输入框
     userNameInput := widget.NewEntry()
-    userNameInput.SetPlaceHolder(" 请输入用户名             ")
+    userNameInput.SetPlaceHolder(" 请输入用户名")
     // 水平布局
-    containerUsr := fyne.NewContainerWithLayout(layout.NewHBoxLayout(), layout.NewSpacer(), userNameText, userNameInput, layout.NewSpacer(), )
+    containerUsr := fyne.NewContainerWithLayout(layout.NewHBoxLayout(), layout.NewSpacer(), userNameText, userNameInput, layout.NewSpacer())
 
     // password
     PasswordText := canvas.NewText("密  码: ", color.Black)
     // 输入框
     passwordInput := widget.NewPasswordEntry()
+    passwordInput.SetPlaceHolder(" 请输入密码")
     // 水平布局
     containerPassword := fyne.NewContainerWithLayout(layout.NewHBoxLayout(), layout.NewSpacer(), PasswordText, passwordInput, layout.NewSpacer())
 
     // 登录按键
-
+    LoginBtn := widget.NewButton("登录", func() {
+        err := usrLogin(userNameInput.Text)
+        if err != nil {
+            fmt.Println("Login err")
+        }
+    })
 
     // 注册
+    RegisterBtn := widget.NewButton("注册", func() {
+        err := userRegister()
+        if err != nil {
+            fmt.Println("Register err")
+        }
+    })
+
+    ContainerUsrLogin := widget.NewGroup("",
+        fyne.NewContainerWithLayout(layout.NewGridLayout(3),
+            layout.NewSpacer(),
+            LoginBtn,
+            layout.NewSpacer(),
+        ),
+    )
+
+    ContainerUsrReg := widget.NewGroup("or",
+        fyne.NewContainerWithLayout(layout.NewGridLayout(3),
+            layout.NewSpacer(),
+            RegisterBtn,
+            layout.NewSpacer(),
+        ),
+    )
 
     // 加载布局
-    LoginWin.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), containerImg, containerUsr, containerPassword))
+    LoginWin.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), containerImg, containerUsr, containerPassword, ContainerUsrLogin, ContainerUsrReg))
     LoginWin.ShowAndRun()
 }
 

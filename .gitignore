@@ -15,5 +15,6 @@
 # vendor/
 .idea/
 ./cli-desktop/bin/*.exe
+./cli-desktop/*.exe
 
 ./server/bin/*.exe
