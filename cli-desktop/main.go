@@ -1,20 +1,12 @@
 package main
 
-import (
-    "cli-desktop/tools"
-    "cli-desktop/ui"
-)
+import "fmt"
 
 func init()  {
-    tools.SetEnv()
+    //tools.SetEnv()
+    fmt.Println("start...")
 }
 
 func main() {
-    app := new(ui.WinApp)
-    app.Init()
-    app.StartApp()
 
-
-    // 取消中文字体
-    tools.DisableEnv()
 }
