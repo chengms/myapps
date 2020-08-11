@@ -19,4 +19,4 @@
 
 ./server/bin/*.exe
 ./cli-desktop/ui/__pycache__/*
-
+./cli-desktop/ui/pyWindow/__pycache__/*
