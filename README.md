@@ -10,9 +10,12 @@ myapps
 │  ├─err                # 
 │  ├─img                # 
 │  ├─tools              # 
-│  ├─ui                 # 客户端 UI，使用 PyQt 编写，Qt designer 画界面 
-│  │  └─__pycache__
-│  └─window
+│  ├─proto              # proto 文件
+│  ├─pyUI               # 客户端 UI，使用 PyQt 编写，Qt designer 画界面 
+│  │  ├─proto               # 
+│  │  └─pyWindow            # 
+│  │      └─ui              # 
+│  └─window             # 
 └─server              # 服务端
     ├─appControl        # 
     ├─conf              # 存放配置文件, 采用 yaml 格式

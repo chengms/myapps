@@ -4,7 +4,7 @@
 
 import sys
 
-from ui.pyWindow.LoginWin import *
+from pyUI.pyWindow.LoginWin import *
 
 
 def main():

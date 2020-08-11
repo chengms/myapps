@@ -2,7 +2,7 @@
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
 
-from ui.pyWindow.LoginUI import Ui_LoginWd
+from pyUI.pyWindow.LoginUI import Ui_LoginWd
 
 
 def showLoginWindow():
