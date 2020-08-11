@@ -18,3 +18,5 @@
 ./cli-desktop/*.exe
 
 ./server/bin/*.exe
+./cli-desktop/ui/__pycache__/*
+
