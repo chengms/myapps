@@ -1,0 +1,2 @@
+syntax = "proto3"; //说明使用proto3语法定义协议
+

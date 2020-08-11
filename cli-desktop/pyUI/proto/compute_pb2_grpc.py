@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import compute_pb2 as compute__pb2
+from pyUI.proto import compute_pb2 as compute__pb2
 
 
 class ComputeStub(object):

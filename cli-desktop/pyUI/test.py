@@ -2,7 +2,7 @@ import time
 import grpc
 from concurrent import futures
 
-import compute_pb2, compute_pb2_grpc  # 刚刚生产的两个文件
+from pyUI.proto import compute_pb2, compute_pb2_grpc  # 刚刚生产的两个文件
 
 
 class ComputeServicer(compute_pb2_grpc.ComputeServicer):

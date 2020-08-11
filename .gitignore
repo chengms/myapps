@@ -19,6 +19,7 @@
 
 ./server/bin/*.exe
 ./cli-desktop/pyUI/__pycache__/*
+./cli-desktop/pyUI/proto/__pycache__/*
 ./cli-desktop/pyUI/pyWindow/__pycache__/*
 ./cli-desktop/pyUI/pyWindow/ui/__pycache__/*
 

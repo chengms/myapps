@@ -3,11 +3,19 @@
 
 ```bash
 pyUI
-├─proto         # proto 文件以及编译成 .py 的文件
-└─pyWindow      # 界面
-    └─ui        # QT ui 文件，及对应编译成 .py 的 ui 类文件
+├─img               # ui 相关图片
+├─proto             # protocol 协议文件以及编译成 .py 的文件
+└─pyWindow          # 界面
+    └─ui            # QT ui 文件，及对应编译成 .py 的 ui 类文件
 ```
 
+# PyQt 画界面注意事项
+## 保存的 .ui 文件转换成 python 文件命令
+```shell
+pyuic5 -o 目标文件.py 源文件.ui
+pyuic5 -o LoginUI.py LoginUI.ui
+pyuic5 -o LoginUI.py Main.ui
+```
 
 
 

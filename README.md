@@ -7,15 +7,15 @@ myapps
 ├─cli-desktop         # 桌面客户端
 │  ├─bin                # 
 │  ├─data               # 
-│  ├─err                # 
-│  ├─img                # 
+│  ├─err                # 相关错误类
 │  ├─tools              # 
-│  ├─proto              # proto 文件
+│  ├─proto              # protocol 协议文件
 │  ├─pyUI               # 客户端 UI，使用 PyQt 编写，Qt designer 画界面 
 │  │  ├─proto               # 
 │  │  └─pyWindow            # 
 │  │      └─ui              # 
 │  └─window             # 
+│  └─service            # 客户端开启的相关服务
 └─server              # 服务端
     ├─appControl        # 
     ├─conf              # 存放配置文件, 采用 yaml 格式
@@ -23,12 +23,18 @@ myapps
 
 ```
 
-# PyQt画界面注意事项
-## 保存的 .ui 文件转换成 python 文件命令
-```shell
-pyuic5 -o 目标文件.py 源文件.ui
-pyuic5 -o LoginUI.py LoginUI.ui
-```
+
+# 组件版本：
+## golang
+- go 1.14
+- grpc3
+
+## python
+- python3.8/3.7
+- PyQt5
+
+
+
 
 
 

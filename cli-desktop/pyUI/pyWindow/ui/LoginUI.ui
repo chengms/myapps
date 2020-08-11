@@ -19,39 +19,11 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>600</width>
-     <height>250</height>
-    </rect>
-   </property>
-   <property name="backgroundBrush">
-    <brush brushstyle="Dense2Pattern">
-     <color alpha="90">
-      <red>10</red>
-      <green>25</green>
-      <blue>135</blue>
-     </color>
-    </brush>
-   </property>
-   <property name="foregroundBrush">
-    <brush brushstyle="Dense7Pattern">
-     <color alpha="255">
-      <red>76</red>
-      <green>175</green>
-      <blue>160</blue>
-     </color>
-    </brush>
-   </property>
-  </widget>
   <widget class="QLabel" name="userNameLabel">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>290</y>
+     <x>110</x>
+     <y>270</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -72,8 +44,8 @@
   <widget class="QLabel" name="passwdLabel">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>340</y>
+     <x>110</x>
+     <y>320</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -94,8 +66,8 @@
   <widget class="QPushButton" name="LoginButton">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>380</y>
+     <x>210</x>
+     <y>400</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -114,21 +86,34 @@
   <widget class="QLineEdit" name="userNameInput">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>290</y>
+     <x>180</x>
+     <y>270</y>
      <width>291</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="passwdInput">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>340</y>
+     <x>180</x>
+     <y>320</y>
      <width>291</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string notr="true"/>
@@ -137,8 +122,8 @@
   <widget class="QLabel" name="RegisterLabel">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>390</y>
+     <x>410</x>
+     <y>410</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -151,6 +136,84 @@
    </property>
    <property name="text">
     <string>注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Imglabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>230</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="rememberUserName">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>370</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>记住用户名</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="rememberPasswd">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>370</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>记住密码</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="messageLabel">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>270</y>
+     <width>101</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>请输入完整用户名和密码！</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

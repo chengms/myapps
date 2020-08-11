@@ -10,11 +10,11 @@ from pyUI.pyWindow.LoginWin import *
 def main():
     print("start...")
 
-    app = QApplication(sys.argv)
+    # app = QApplication(sys.argv)
 
     showLoginWindow()
 
-    sys.exit(app.exec_())
+    # sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
