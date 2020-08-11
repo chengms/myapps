@@ -14,6 +14,6 @@ def showLoginWindow():
     LoginUi.passwdInput.setEchoMode(QLineEdit.Password)  # 设置密码输入显示为 圆点
 
     # 设置点击信号绑定
-    
+
     # 显示界面
     LoginMainWindow.show()
