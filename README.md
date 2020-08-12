@@ -25,13 +25,16 @@ myapps
 
 
 # 组件版本：
-## golang
+## client
+### golang
 - go 1.14
 - grpc3
 
-## python
+### python
 - python3.8/3.7
 - PyQt5
+
+
 
 
 

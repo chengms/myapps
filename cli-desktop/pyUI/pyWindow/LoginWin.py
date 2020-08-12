@@ -95,7 +95,7 @@ class LoginWin(QWidget):
         print(rmberPasswdStu)
 
         # check username and password
-        if CheckLoginData(userName, passwd, rmberUserNameStu, rmberPasswdStu):
+        if not CheckLoginData(userName, passwd, rmberUserNameStu, rmberPasswdStu):
             self.LoginUi.messageLabel.setText("请输入正确的用户名或密码")
             # 设置提示字体为红色
             self.LoginUi.messageLabel.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
