@@ -5,6 +5,12 @@
 *.so
 *.dylib
 
+# ignore binary
+./cli-desktop/go_build_cli_desktop
+./cli-desktop/bin/*.exe
+./cli-desktop/*.exe
+./server/bin/*.exe
+
 # Test binary, built with `go test -c`
 *.test
 
@@ -13,14 +19,13 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# IDEA config
 .idea/
-./cli-desktop/bin/*.exe
-./cli-desktop/*.exe
 
-./server/bin/*.exe
-./cli-desktop/pyUI/__pycache__/*
-./cli-desktop/pyUI/proto/__pycache__/*
-./cli-desktop/pyUI/pyWindow/__pycache__/*
-./cli-desktop/pyUI/pyWindow/ui/__pycache__/*
+# ignore all python cache directories
+**/__pycache__/*
 
+# mac hide directories
+.DS_Store
 
