@@ -6,10 +6,10 @@
 *.dylib
 
 # ignore binary
-./cli-desktop/go_build_cli_desktop
-./cli-desktop/bin/*.exe
-./cli-desktop/*.exe
-./server/bin/*.exe
+cli-desktop/go_build_cli_desktop
+cli-desktop/bin/*.exe
+cli-desktop/*.exe
+server/bin/*.exe
 
 # Test binary, built with `go test -c`
 *.test
@@ -21,7 +21,7 @@
 # vendor/
 
 # IDEA config
-.idea/
+.idea
 
 # ignore all python cache directories
 **/__pycache__/*

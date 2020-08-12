@@ -1,7 +1,12 @@
 #!/bin/python3
 
-# PyQt window start
-#
+#  PyQt window start
+#  -*- coding:utf8 -*-
+#  @Author  : chengms
+#  @WebSite : chengms.com
+#  @Email   : chengms2012@163.com
+#  @TIME    : 2020/8/10
+#  @File    : start.py
 #
 
 import sys
