@@ -1,7 +1,7 @@
 ## 目录结构
 ```
 myapps
-├─cli-desktop         # 桌面客户端
+└─cli-desktop         # 桌面客户端
   ├─bin                # 
   ├─data               # 
   ├─err                # 相关错误类
