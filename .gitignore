@@ -22,6 +22,7 @@ server/bin/*.exe
 
 # IDEA config
 .idea
+**/.idea
 
 # ignore all python cache directories
 **/__pycache__/*

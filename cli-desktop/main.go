@@ -24,6 +24,10 @@ func init()  {
 }
 
 
+func main()  {
+    service.UserOpService()
+}
+
 //func test() {
 //    conn, err := grpc.Dial("127.0.0.1:19999", grpc.WithInsecure())
 //    if err != nil {
@@ -38,10 +42,3 @@ func init()  {
 //    }
 //    fmt.Println(reply)
 //}
-
-
-func main()  {
-    service.UserOpService()
-}
-
-

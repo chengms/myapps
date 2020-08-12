@@ -29,7 +29,7 @@ class UserOption(object):
 
     def UserLogin(self):
         self.loginResponse = self.client.UserLogin(self.loginRequest)
-        return self.loginResponse
+        return self.loginResponse.
 
     def setUserRegisterRequest(self, Id, userName, passwd, Eamil):
         self.registerRequset = userOp_pb2.UserRegisterRequest(Id=Id,

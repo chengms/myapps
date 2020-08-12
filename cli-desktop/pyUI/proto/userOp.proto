@@ -12,6 +12,7 @@ message LoginRequest{
     bool rmbpasswdChk = 5;    // 是否记住密码
 }
 
+// 登录返回信息，改用json格式返回，LoginReply{ }
 message LoginResponse{
   int32 userId = 1;
   string LoginMgs = 2;    // 登录提示信息
