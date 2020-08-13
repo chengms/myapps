@@ -1,12 +1,14 @@
 # Show Login Window
+from PyQt5.QtGui import QIcon, QPalette, QColor, QPixmap
+from PyQt5.QtWidgets import QWidget, QLineEdit
 
 from pyUI.pyWindow.ui.LoginUI import Ui_LoginWd
-from pyUI.pyWindow.RegisterWin import *
+from pyUI.pyWindow.RegisterWin import RegisterWin
+from pyUI.msgOp.checkData import *
 
-
-def doRegister():
-    print("Register")
-    # showRegisterWindow()
+# def doRegister():
+#     print("Register")
+#     showRegisterWindow()
 
 
 class LoginWin(QWidget):
@@ -23,6 +25,7 @@ class LoginWin(QWidget):
         # 加载 绘图文件
         self.LoginUi = Ui_LoginWd()
         self.LoginUi.setupUi(self)
+        self.RegisterWin = RegisterWin()
         self.initUI()
 
     def initUI(self):
@@ -33,7 +36,7 @@ class LoginWin(QWidget):
         self.setWindowIcon(QIcon("img/icon.png"))
         # 设置窗口背景
         palette = QPalette()
-        palette.setColor(self.backgroundRole(), QColor(201, 241, 209))   # 设置背景颜色
+        palette.setColor(self.backgroundRole(), QColor(201, 241, 209))  # 设置背景颜色
         # palette.setBrush(self.backgroundRole(), QBrush(QPixmap('云.png')))   # 设置背景图片
         self.setPalette(palette)
 
@@ -49,7 +52,7 @@ class LoginWin(QWidget):
         # 设置默认显示
         self.LoginUi.userNameInput.setPlaceholderText("用户名为数字、字母或特殊字符")
         # 输入框变化时绑定信号
-        self.LoginUi.userNameInput.textChanged.connect(self.userNameChaned)
+        self.LoginUi.userNameInput.textChanged.connect(self.userNameChanged)
         self.LoginUi.passwdInput.setPlaceholderText("密码可以为大小写字母，数字，特殊字符")
         # 设置密码输入显示为 圆点
         self.LoginUi.passwdInput.setEchoMode(QLineEdit.Password)
@@ -68,12 +71,10 @@ class LoginWin(QWidget):
         self.LoginUi.LoginButton.setDefault(True)
 
         # 注册按钮
-        # self.LoginUi.RegisterLabel.hideEvent()
-        # self.LoginUi.RegisterLabel.setStyleSheet("QLabel{color:rgb(51,92,255);}")
-        # self.LoginUi.RegisterLabel.mousePressEvent = doRegister
-        self.LoginUi.registerCmdLinkButton.setIcon(QIcon(""))
+        self.LoginUi.RegisterCmdLinkButton.clicked.connect(self.openRegisterWin)
+        # self.LoginUi.RegisterCmdLinkButton.setIcon(QIcon(""))
 
-    def userNameChaned(self):
+    def userNameChanged(self):
         self.LoginUi.messageLabel.setVisible(False)
 
     def passwdChanged(self):
@@ -110,16 +111,17 @@ class LoginWin(QWidget):
         # 登录成功，隐藏登录界面，显示主界面
         # ShouMainWindow()
 
-    def ShowWin(self):
-        # 显示界面
+    # 打开注册界面
+    # windowList = []
+
+    def openRegisterWin(self):
+        print("Open Register...")
+        # 隐藏自身
+        self.hide()
+        # 显示注册窗口
+        self.RegisterWin.run()
         self.show()
 
-
-def showLoginWindow():
-    app = QApplication(sys.argv)
-
-    login = LoginWin()
-    login.show()
-
-    sys.exit(app.exec_())
-
+    def run(self):
+        # 显示界面
+        self.show()

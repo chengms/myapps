@@ -10,7 +10,7 @@
 #
 
 import sys
-from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget
+from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QDialog
 from PyQt5.QtGui import QIcon, QPalette, QColor, QPixmap
 
 from pyUI.msgOp.checkData import *
@@ -18,8 +18,8 @@ from pyUI.pyWindow.ui.RegisterUI import *
 from pyUI.tools.common import *
 
 
-class RegisterWin(QWidget):
-    userNameLength =2
+class RegisterWin(QDialog):
+    userNameLength = 2
     passwdLength = 2
 
     def __init__(self):
@@ -43,7 +43,7 @@ class RegisterWin(QWidget):
 
         # 输入框设置
         # 设置默认显示
-        self.RegisterUi.UserNameLineEdit.setPlaceholderText("用户名为数字、字母或特殊字符")
+        self.RegisterUi.UserNameLineEdit.setPlaceholderText("用户名为6位以上数字、字母或特殊字符")
         self.RegisterUi.EmailLineEdit.setPlaceholderText("如：12345@qq.com")
 
         # 密码输入设置
@@ -57,6 +57,11 @@ class RegisterWin(QWidget):
         self.RegisterUi.RegisterPushButton.setDefault(True)
         self.RegisterUi.RegisterPushButton.clicked.connect(self.doRegister)
 
+        # 重置按钮
+        self.RegisterUi.RestButton.setIcon(QIcon(""))
+        self.RegisterUi.RestButton.clicked.connect(self.reset)
+
+        # 隐藏提示标签
         self.setHideMsgLabel()
 
     def setHideMsgLabel(self):
@@ -69,29 +74,33 @@ class RegisterWin(QWidget):
         # 检查用户名合法性
         userName = self.RegisterUi.UserNameLineEdit.text()
         if len(userName) < self.userNameLength:
-            self.RegisterUi.userNameMsg.setText("请输入正确用户名！")
+            self.RegisterUi.userNameMsg.setText("用户名过短！")
             # 设置提示字体为红色
             self.RegisterUi.userNameMsg.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
             # 显示提示框
             self.RegisterUi.userNameMsg.setVisible(True)
-            return userName
+            return userName, True
+        else:
+            return None, False
 
     def checkEmail(self):
         # 检查邮箱
         email = self.RegisterUi.EmailLineEdit.text()
         if not VerifyEmailFormat(email):
-            return email
+            return email, True
+        else:
+            return None, False
 
     def checkPasswd(self):
         # 检查密码
         passwd = self.RegisterUi.passwdLineEdit.text()
         if len(passwd) < self.passwdLength:
-            self.RegisterUi.passwdMsg.setText("密码长度太短！")
+            self.RegisterUi.passwdMsg.setText("密码长度太短！ 长度 > 6")
             # 设置提示字体为红色
             self.RegisterUi.passwdMsg.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
             # 显示提示框
             self.RegisterUi.passwdMsg.setVisible(True)
-            return passwd
+            return passwd, True
 
         passwd2 = self.RegisterUi.passwd2LineEdit.text()
         if passwd != passwd2:
@@ -100,14 +109,22 @@ class RegisterWin(QWidget):
             self.RegisterUi.passwd2Msg.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
             # 显示提示框
             self.RegisterUi.passwd2Msg.setVisible(True)
-            return passwd
+            return passwd, True
+        else:
+            return None, False
 
     def doRegister(self):
         # 提交前检查
 
-        userName = self.checkUserName()
-        email = self.checkEmail()
-        passwd = self.checkPasswd()
+        userName, res = self.checkUserName()
+        if not res:
+            return
+        email, res = self.checkEmail()
+        if not res:
+            return
+        passwd, res = self.checkPasswd()
+        if not res:
+            return
 
         if not CheckRegisterData(userName, passwd, email):
             self.setHideMsgLabel()
@@ -118,15 +135,29 @@ class RegisterWin(QWidget):
             self.RegisterUi.userNameMsg.setVisible(True)
             return
 
+    def reset(self):
+        print("reset...")
+        # self.RegisterUi.UserNameLineEdit.setText("")
+        self.RegisterUi.UserNameLineEdit.clear()
+
+    # 关闭时打开登录界面
+    # windowList = []
+    #
+    # def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
+    #     # 重写关闭事件，回到登录界面
+    #     the_window = LoginWin()
+    #     # 确保能打开登录界面
+    #     self.windowList.append(the_window)
+    #     # 打开登录界面
+    #     the_window.show()
+    #     # event.accept()
+
     def run(self):
-        self.run()
+        self.show()
+        self.exec_()
 
 
-def showRegisterWindow():
-    app = QApplication(sys.argv)
-
-    register = RegisterWin()
-    register.show()
-
-    sys.exit(app.exec_())
+# def showRegisterWindow():
+#     register = RegisterWin()
+#     register.show()
 

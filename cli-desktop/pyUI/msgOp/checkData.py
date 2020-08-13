@@ -20,7 +20,7 @@ def CheckLoginData(userName, passwd, rmbNameSts, rmbPasswdSts):
     UserOp.setUserLoginRequest(1, userName, passwd, rmbNameSts, rmbPasswdSts)
     # print(UserOp.loginRequest)
     res, err = UserOp.UserLogin()
-    if None == err:
+    if None != err:
         return False
 
     print("login msg: ", res.LoginMgs, "\n--------------------\n")
@@ -32,11 +32,11 @@ def CheckLoginData(userName, passwd, rmbNameSts, rmbPasswdSts):
 
 def CheckRegisterData(userName, passwd, email):
     # 注册验证
-
+    print(userName, passwd, email)
     UserOp.setUserRegisterRequest(1, userName, passwd, email)
-    # print(UserOp.loginRequest)
+    print(UserOp.loginRequest)
     res, err = UserOp.UserRegister()
-    if None == err:
+    if None != err:
         return False
 
     print("Register msg: ", res.RegisterMesg, "\n--------------------\n")

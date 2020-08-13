@@ -30,11 +30,12 @@
    </property>
    <property name="font">
     <font>
-     <family>幼圆</family>
+     <family>.SF NS Text</family>
      <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
-     <stylestrategy>NoAntialias</stylestrategy>
+     <underline>false</underline>
+     <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
    <property name="text">
@@ -52,11 +53,11 @@
    </property>
    <property name="font">
     <font>
-     <family>幼圆</family>
+     <family>.SF NS Text</family>
      <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
-     <stylestrategy>NoAntialias</stylestrategy>
+     <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
    <property name="text">
@@ -74,7 +75,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -127,6 +128,12 @@
      <width>600</width>
      <height>230</height>
     </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::ActionsContextMenu</enum>
+   </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
    </property>
    <property name="text">
     <string/>
@@ -197,14 +204,23 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QCommandLinkButton" name="registerCmdLinkButton">
+  <widget class="QCommandLinkButton" name="RegisterCmdLinkButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
+     <x>410</x>
      <y>400</y>
-     <width>71</width>
-     <height>41</height>
+     <width>61</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>true</underline>
+     <stylestrategy>PreferAntialias</stylestrategy>
+    </font>
    </property>
    <property name="text">
     <string>注册</string>
