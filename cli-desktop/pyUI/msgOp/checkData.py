@@ -9,17 +9,38 @@
 
 
 import json
+import grpc
 from pyUI.connectSvc.userOption import UserOp
 
 
 def CheckLoginData(userName, passwd, rmbNameSts, rmbPasswdSts):
+    # 登录验证
+
     # print("Check data: ", userName, passwd, rmbNameSts, rmbPasswdSts)
     UserOp.setUserLoginRequest(1, userName, passwd, rmbNameSts, rmbPasswdSts)
     # print(UserOp.loginRequest)
-    res = UserOp.UserLogin()
+    res, err = UserOp.UserLogin()
+    if None == err:
+        return False
 
     print("login msg: ", res.LoginMgs, "\n--------------------\n")
 
     if res.LoginSts:
+        return True
+    return False
+
+
+def CheckRegisterData(userName, passwd, email):
+    # 注册验证
+
+    UserOp.setUserRegisterRequest(1, userName, passwd, email)
+    # print(UserOp.loginRequest)
+    res, err = UserOp.UserRegister()
+    if None == err:
+        return False
+
+    print("Register msg: ", res.RegisterMesg, "\n--------------------\n")
+
+    if res.RegisterSts:
         return True
     return False

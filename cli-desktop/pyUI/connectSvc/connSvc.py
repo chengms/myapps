@@ -2,8 +2,8 @@
 # 数据转发处理
 #
 
-import grpc
-from pyUI.proto import userOp_pb2, userOp_pb2_grpc
+# import grpc
+# from pyUI.proto import userOp_pb2, userOp_pb2_grpc
 
 SvcAddr = '127.0.0.1:30011'
 

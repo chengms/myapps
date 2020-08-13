@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import userOp_pb2 as userOp__pb2
+import pyUI.proto.userOp_pb2 as userOp__pb2
 
 
 class userOpStub(object):

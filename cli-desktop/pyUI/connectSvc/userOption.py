@@ -1,8 +1,12 @@
 import logging
 from pyUI.connectSvc.connSvc import *
+import grpc
+from pyUI.proto import userOp_pb2, userOp_pb2_grpc
+
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.INFO)
+
 
 class UserOption(object):
     def __init__(self):
@@ -39,10 +43,10 @@ class UserOption(object):
             self.loginResponse = self.client.UserLogin(self.loginRequest)
         except grpc.RpcError as rpc_error:
             _LOGGER.error('Received login error: %s', rpc_error)
-            return rpc_error
+            return None, rpc_error
         else:
             _LOGGER.info('Received login message: %s', self.loginResponse)
-            return self.loginResponse
+            return self.loginResponse, None
 
     def setUserRegisterRequest(self, Id, userName, passwd, Eamil):
         self.registerRequset = userOp_pb2.UserRegisterRequest(Id=Id,

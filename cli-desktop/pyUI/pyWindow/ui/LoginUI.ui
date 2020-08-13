@@ -119,25 +119,6 @@
     <string notr="true"/>
    </property>
   </widget>
-  <widget class="QLabel" name="RegisterLabel">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>410</y>
-     <width>54</width>
-     <height>12</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>楷体</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>注册</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="Imglabel">
    <property name="geometry">
     <rect>
@@ -214,6 +195,19 @@
    </property>
    <property name="wordWrap">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QCommandLinkButton" name="registerCmdLinkButton">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>400</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>注册</string>
    </property>
   </widget>
  </widget>

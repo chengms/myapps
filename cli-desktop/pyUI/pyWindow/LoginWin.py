@@ -1,12 +1,12 @@
 # Show Login Window
 
-import sys
-from PyQt5.Qt import *
-from PyQt5.QtWidgets import QApplication, QLineEdit, QWidget, QColorDialog
-from PyQt5.QtGui import QIcon, QPalette, QColor, QPixmap
-
-from pyUI.msgOp.checkData import *
 from pyUI.pyWindow.ui.LoginUI import Ui_LoginWd
+from pyUI.pyWindow.RegisterWin import *
+
+
+def doRegister():
+    print("Register")
+    # showRegisterWindow()
 
 
 class LoginWin(QWidget):
@@ -67,6 +67,12 @@ class LoginWin(QWidget):
         # 设置按钮默认状态
         self.LoginUi.LoginButton.setDefault(True)
 
+        # 注册按钮
+        # self.LoginUi.RegisterLabel.hideEvent()
+        # self.LoginUi.RegisterLabel.setStyleSheet("QLabel{color:rgb(51,92,255);}")
+        # self.LoginUi.RegisterLabel.mousePressEvent = doRegister
+        self.LoginUi.registerCmdLinkButton.setIcon(QIcon(""))
+
     def userNameChaned(self):
         self.LoginUi.messageLabel.setVisible(False)
 
@@ -100,6 +106,9 @@ class LoginWin(QWidget):
             self.LoginUi.messageLabel.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
             # 显示提示框
             self.LoginUi.messageLabel.setVisible(True)
+
+        # 登录成功，隐藏登录界面，显示主界面
+        # ShouMainWindow()
 
     def ShowWin(self):
         # 显示界面

@@ -52,9 +52,10 @@ func (usrOp UserOpSvc) UserLogin (ctx context.Context, loginReq *pb.LoginRequest
 
 func (usrOp UserOpSvc) UserRegister(ctx context.Context, regReq *pb.UserRegisterRequest) (*pb.UserRegisterReply, error) {
     resp := new(pb.UserRegisterReply)
-    //var replay = UserRegisterResponse{}
-    //replay.RegisterMesg = fmt.Sprintf("reg user: %s", regReq.UserName)
+
     resp.RegisterMesg = fmt.Sprintf("reg user: %s", regReq.UserName)
+    resp.UserId = 1
+    resp.RegisterSts = false
 
     return resp, nil
 }

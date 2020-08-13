@@ -109,7 +109,7 @@ func (x *LoginRequest) GetRmbpasswdChk() bool {
 	return false
 }
 
-// 登录返回信息，改用json格式返回，LoginReply{ }
+// 登录返回信息
 type LoginReply struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
