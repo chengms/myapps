@@ -1,4 +1,4 @@
-
+# 检查相关数据是否正确
 #  -*- coding:utf8 -*-
 #  @Author  : chengms
 #  @WebSite : chengms.com
@@ -7,18 +7,19 @@
 #  @File    : checkData.py
 #
 
-# 检查相关数据是否正确
+
+import json
 from pyUI.connectSvc.userOption import UserOp
-from pyUI.proto.userOp_pb2_grpc import *
 
 
 def CheckLoginData(userName, passwd, rmbNameSts, rmbPasswdSts):
+    # print("Check data: ", userName, passwd, rmbNameSts, rmbPasswdSts)
     UserOp.setUserLoginRequest(1, userName, passwd, rmbNameSts, rmbPasswdSts)
+    # print(UserOp.loginRequest)
     res = UserOp.UserLogin()
 
-    print(res)
+    print("login msg: ", res.LoginMgs, "\n--------------------\n")
 
-    # print("login msg: ", res.RegisterMesg)
-    if res.RegisterSts:
+    if res.LoginSts:
         return True
     return False

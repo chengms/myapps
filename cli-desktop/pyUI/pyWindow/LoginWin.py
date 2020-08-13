@@ -54,7 +54,7 @@ class LoginWin(QWidget):
         # 设置密码输入显示为 圆点
         self.LoginUi.passwdInput.setEchoMode(QLineEdit.Password)
         #  密码框输入时信号框
-        self.LoginUi.userNameInput.textChanged.connect(self.passwdChaned)
+        self.LoginUi.passwdInput.textChanged.connect(self.passwdChanged)
 
         # 信息提示框默认隐藏
         self.LoginUi.messageLabel.setVisible(False)
@@ -70,12 +70,12 @@ class LoginWin(QWidget):
     def userNameChaned(self):
         self.LoginUi.messageLabel.setVisible(False)
 
-    def passwdChaned(self):
+    def passwdChanged(self):
         self.LoginUi.messageLabel.setVisible(False)
 
     def doLogin(self):
         # 点击登录后的动作
-        print("login..\n")
+        print("login..")
 
         userName = self.LoginUi.userNameInput.text()
         passwd = self.LoginUi.passwdInput.text()
@@ -86,16 +86,15 @@ class LoginWin(QWidget):
             self.LoginUi.messageLabel.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
             # 显示提示框
             self.LoginUi.messageLabel.setVisible(True)
+            return
 
         # 获取记住用户名选项
-        rmberUserNameStu = self.LoginUi.rememberUserName.isChecked()
-        print(rmberUserNameStu)
+        saveUserNameSts = self.LoginUi.rememberUserName.isChecked()
         # 获取记住密码选项
-        rmberPasswdStu = self.LoginUi.rememberPasswd.isChecked()
-        print(rmberPasswdStu)
+        savePasswdSts = self.LoginUi.rememberPasswd.isChecked()
 
         # check username and password
-        if not CheckLoginData(userName, passwd, rmberUserNameStu, rmberPasswdStu):
+        if not CheckLoginData(userName, passwd, saveUserNameSts, savePasswdSts):
             self.LoginUi.messageLabel.setText("请输入正确的用户名或密码")
             # 设置提示字体为红色
             self.LoginUi.messageLabel.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
@@ -111,7 +110,6 @@ def showLoginWindow():
     app = QApplication(sys.argv)
 
     login = LoginWin()
-    login.initUI()
     login.show()
 
     sys.exit(app.exec_())

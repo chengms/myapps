@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\010.;userOp',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cuserOp.proto\"e\n\x0cLoginRequest\x12\n\n\x02Id\x18\x01 \x01(\x05\x12\x10\n\x08userName\x18\x02 \x01(\t\x12\x0e\n\x06passwd\x18\x03 \x01(\t\x12\x11\n\trmbusrChk\x18\x04 \x01(\x08\x12\x14\n\x0crmbpasswdChk\x18\x05 \x01(\x08\"C\n\rLoginResponse\x12\x0e\n\x06userId\x18\x01 \x01(\x05\x12\x10\n\x08LoginMgs\x18\x02 \x01(\t\x12\x10\n\x08LoginSts\x18\x03 \x01(\x08\"R\n\x13UserRegisterRequest\x12\n\n\x02Id\x18\x01 \x01(\x05\x12\x10\n\x08userName\x18\x02 \x01(\t\x12\x0e\n\x06passwd\x18\x03 \x01(\t\x12\r\n\x05\x45\x61mil\x18\x04 \x01(\t\"Q\n\x14UserRegisterResponse\x12\x0e\n\x06userId\x18\x01 \x01(\x05\x12\x14\n\x0cRegisterMesg\x18\x02 \x01(\t\x12\x13\n\x0bRegisterSts\x18\x03 \x01(\x08\x32u\n\x06userOp\x12,\n\tUserLogin\x12\r.LoginRequest\x1a\x0e.LoginResponse\"\x00\x12=\n\x0cUserRegister\x12\x14.UserRegisterRequest\x1a\x15.UserRegisterResponse\"\x00\x42\nZ\x08.;userOpb\x06proto3'
+  serialized_pb=b'\n\x0cuserOp.proto\"e\n\x0cLoginRequest\x12\n\n\x02Id\x18\x01 \x01(\x05\x12\x10\n\x08userName\x18\x02 \x01(\t\x12\x0e\n\x06passwd\x18\x03 \x01(\t\x12\x11\n\trmbusrChk\x18\x04 \x01(\x08\x12\x14\n\x0crmbpasswdChk\x18\x05 \x01(\x08\"@\n\nLoginReply\x12\x0e\n\x06userId\x18\x01 \x01(\x05\x12\x10\n\x08LoginMgs\x18\x02 \x01(\t\x12\x10\n\x08LoginSts\x18\x03 \x01(\x08\"R\n\x13UserRegisterRequest\x12\n\n\x02Id\x18\x01 \x01(\x05\x12\x10\n\x08userName\x18\x02 \x01(\t\x12\x0e\n\x06passwd\x18\x03 \x01(\t\x12\r\n\x05\x45\x61mil\x18\x04 \x01(\t\"N\n\x11UserRegisterReply\x12\x0e\n\x06userId\x18\x01 \x01(\x05\x12\x14\n\x0cRegisterMesg\x18\x02 \x01(\t\x12\x13\n\x0bRegisterSts\x18\x03 \x01(\x08\x32o\n\x06userOp\x12)\n\tUserLogin\x12\r.LoginRequest\x1a\x0b.LoginReply\"\x00\x12:\n\x0cUserRegister\x12\x14.UserRegisterRequest\x1a\x12.UserRegisterReply\"\x00\x42\nZ\x08.;userOpb\x06proto3'
 )
 
 
@@ -85,30 +85,30 @@ _LOGINREQUEST = _descriptor.Descriptor(
 )
 
 
-_LOGINRESPONSE = _descriptor.Descriptor(
-  name='LoginResponse',
-  full_name='LoginResponse',
+_LOGINREPLY = _descriptor.Descriptor(
+  name='LoginReply',
+  full_name='LoginReply',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='userId', full_name='LoginResponse.userId', index=0,
+      name='userId', full_name='LoginReply.userId', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='LoginMgs', full_name='LoginResponse.LoginMgs', index=1,
+      name='LoginMgs', full_name='LoginReply.LoginMgs', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='LoginSts', full_name='LoginResponse.LoginSts', index=2,
+      name='LoginSts', full_name='LoginReply.LoginSts', index=2,
       number=3, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -127,7 +127,7 @@ _LOGINRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=119,
-  serialized_end=186,
+  serialized_end=183,
 )
 
 
@@ -179,35 +179,35 @@ _USERREGISTERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=188,
-  serialized_end=270,
+  serialized_start=185,
+  serialized_end=267,
 )
 
 
-_USERREGISTERRESPONSE = _descriptor.Descriptor(
-  name='UserRegisterResponse',
-  full_name='UserRegisterResponse',
+_USERREGISTERREPLY = _descriptor.Descriptor(
+  name='UserRegisterReply',
+  full_name='UserRegisterReply',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='userId', full_name='UserRegisterResponse.userId', index=0,
+      name='userId', full_name='UserRegisterReply.userId', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='RegisterMesg', full_name='UserRegisterResponse.RegisterMesg', index=1,
+      name='RegisterMesg', full_name='UserRegisterReply.RegisterMesg', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='RegisterSts', full_name='UserRegisterResponse.RegisterSts', index=2,
+      name='RegisterSts', full_name='UserRegisterReply.RegisterSts', index=2,
       number=3, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -225,14 +225,14 @@ _USERREGISTERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=272,
-  serialized_end=353,
+  serialized_start=269,
+  serialized_end=347,
 )
 
 DESCRIPTOR.message_types_by_name['LoginRequest'] = _LOGINREQUEST
-DESCRIPTOR.message_types_by_name['LoginResponse'] = _LOGINRESPONSE
+DESCRIPTOR.message_types_by_name['LoginReply'] = _LOGINREPLY
 DESCRIPTOR.message_types_by_name['UserRegisterRequest'] = _USERREGISTERREQUEST
-DESCRIPTOR.message_types_by_name['UserRegisterResponse'] = _USERREGISTERRESPONSE
+DESCRIPTOR.message_types_by_name['UserRegisterReply'] = _USERREGISTERREPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 LoginRequest = _reflection.GeneratedProtocolMessageType('LoginRequest', (_message.Message,), {
@@ -242,12 +242,12 @@ LoginRequest = _reflection.GeneratedProtocolMessageType('LoginRequest', (_messag
   })
 _sym_db.RegisterMessage(LoginRequest)
 
-LoginResponse = _reflection.GeneratedProtocolMessageType('LoginResponse', (_message.Message,), {
-  'DESCRIPTOR' : _LOGINRESPONSE,
+LoginReply = _reflection.GeneratedProtocolMessageType('LoginReply', (_message.Message,), {
+  'DESCRIPTOR' : _LOGINREPLY,
   '__module__' : 'userOp_pb2'
-  # @@protoc_insertion_point(class_scope:LoginResponse)
+  # @@protoc_insertion_point(class_scope:LoginReply)
   })
-_sym_db.RegisterMessage(LoginResponse)
+_sym_db.RegisterMessage(LoginReply)
 
 UserRegisterRequest = _reflection.GeneratedProtocolMessageType('UserRegisterRequest', (_message.Message,), {
   'DESCRIPTOR' : _USERREGISTERREQUEST,
@@ -256,12 +256,12 @@ UserRegisterRequest = _reflection.GeneratedProtocolMessageType('UserRegisterRequ
   })
 _sym_db.RegisterMessage(UserRegisterRequest)
 
-UserRegisterResponse = _reflection.GeneratedProtocolMessageType('UserRegisterResponse', (_message.Message,), {
-  'DESCRIPTOR' : _USERREGISTERRESPONSE,
+UserRegisterReply = _reflection.GeneratedProtocolMessageType('UserRegisterReply', (_message.Message,), {
+  'DESCRIPTOR' : _USERREGISTERREPLY,
   '__module__' : 'userOp_pb2'
-  # @@protoc_insertion_point(class_scope:UserRegisterResponse)
+  # @@protoc_insertion_point(class_scope:UserRegisterReply)
   })
-_sym_db.RegisterMessage(UserRegisterResponse)
+_sym_db.RegisterMessage(UserRegisterReply)
 
 
 DESCRIPTOR._options = None
@@ -273,8 +273,8 @@ _USEROP = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=355,
-  serialized_end=472,
+  serialized_start=349,
+  serialized_end=460,
   methods=[
   _descriptor.MethodDescriptor(
     name='UserLogin',
@@ -282,7 +282,7 @@ _USEROP = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_LOGINREQUEST,
-    output_type=_LOGINRESPONSE,
+    output_type=_LOGINREPLY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
@@ -292,7 +292,7 @@ _USEROP = _descriptor.ServiceDescriptor(
     index=1,
     containing_service=None,
     input_type=_USERREGISTERREQUEST,
-    output_type=_USERREGISTERRESPONSE,
+    output_type=_USERREGISTERREPLY,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

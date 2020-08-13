@@ -2,15 +2,11 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from pyUI.proto import userOp_pb2 as userOp__pb2
+import userOp_pb2 as userOp__pb2
 
 
 class userOpStub(object):
-    """service UserRegiser{
-    rpc UserRegister(UserRegisterRequest) returns (UserRegisterResponse) {};
-    }
-
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -21,21 +17,17 @@ class userOpStub(object):
         self.UserLogin = channel.unary_unary(
                 '/userOp/UserLogin',
                 request_serializer=userOp__pb2.LoginRequest.SerializeToString,
-                response_deserializer=userOp__pb2.LoginResponse.FromString,
+                response_deserializer=userOp__pb2.LoginReply.FromString,
                 )
         self.UserRegister = channel.unary_unary(
                 '/userOp/UserRegister',
                 request_serializer=userOp__pb2.UserRegisterRequest.SerializeToString,
-                response_deserializer=userOp__pb2.UserRegisterResponse.FromString,
+                response_deserializer=userOp__pb2.UserRegisterReply.FromString,
                 )
 
 
 class userOpServicer(object):
-    """service UserRegiser{
-    rpc UserRegister(UserRegisterRequest) returns (UserRegisterResponse) {};
-    }
-
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def UserLogin(self, request, context):
         """登录
@@ -57,12 +49,12 @@ def add_userOpServicer_to_server(servicer, server):
             'UserLogin': grpc.unary_unary_rpc_method_handler(
                     servicer.UserLogin,
                     request_deserializer=userOp__pb2.LoginRequest.FromString,
-                    response_serializer=userOp__pb2.LoginResponse.SerializeToString,
+                    response_serializer=userOp__pb2.LoginReply.SerializeToString,
             ),
             'UserRegister': grpc.unary_unary_rpc_method_handler(
                     servicer.UserRegister,
                     request_deserializer=userOp__pb2.UserRegisterRequest.FromString,
-                    response_serializer=userOp__pb2.UserRegisterResponse.SerializeToString,
+                    response_serializer=userOp__pb2.UserRegisterReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -72,11 +64,7 @@ def add_userOpServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class userOp(object):
-    """service UserRegiser{
-    rpc UserRegister(UserRegisterRequest) returns (UserRegisterResponse) {};
-    }
-
-    """
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def UserLogin(request,
@@ -91,7 +79,7 @@ class userOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/userOp/UserLogin',
             userOp__pb2.LoginRequest.SerializeToString,
-            userOp__pb2.LoginResponse.FromString,
+            userOp__pb2.LoginReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -108,6 +96,6 @@ class userOp(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/userOp/UserRegister',
             userOp__pb2.UserRegisterRequest.SerializeToString,
-            userOp__pb2.UserRegisterResponse.FromString,
+            userOp__pb2.UserRegisterReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

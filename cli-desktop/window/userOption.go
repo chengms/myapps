@@ -16,28 +16,44 @@ import (
     "golang.org/x/net/context"
 )
 
-
+//type LoginResponse struct{
+//    UserId int
+//    LoginMsg string     // 登录提示信息
+//    LoginSts bool       // 登录状态，True 表示成功，False 表示登录失败
+//}
+//
+//type UserRegisterResponse struct{
+//    UserId int
+//    RegisterMesg string     // 注册提示消息
+//    RegisterSts bool        // 注册状态 True：成功， False：失败
+//}
 
 // 定义操作类
 type UserOpSvc struct {}
 
 
 // 实现接口服务
-func (usrOp UserOpSvc) UserLogin (ctx context.Context, loginReq *pb.LoginRequest) (*pb.LoginResponse, error) {
-    resp := new(pb.LoginResponse)
+func (usrOp UserOpSvc) UserLogin (ctx context.Context, loginReq *pb.LoginRequest) (*pb.LoginReply, error) {
+    resp := new(pb.LoginReply)
+
+    fmt.Println(loginReq)
 
     if loginReq.RmbusrChk == true {
         resp.LoginSts = true
     } else {
         resp.LoginSts = false
     }
-    resp.LoginMgs = fmt.Sprintf("Login user: %s", loginReq.UserName)
 
+    resp.UserId = 1
+    resp.LoginMgs = fmt.Sprintf("Login user: %s", loginReq.UserName)
+    fmt.Println(resp)
     return resp, nil
 }
 
-func (usrOp UserOpSvc) UserRegister(ctx context.Context, regReq *pb.UserRegisterRequest) (*pb.UserRegisterResponse, error) {
-    resp := new(pb.UserRegisterResponse)
+func (usrOp UserOpSvc) UserRegister(ctx context.Context, regReq *pb.UserRegisterRequest) (*pb.UserRegisterReply, error) {
+    resp := new(pb.UserRegisterReply)
+    //var replay = UserRegisterResponse{}
+    //replay.RegisterMesg = fmt.Sprintf("reg user: %s", regReq.UserName)
     resp.RegisterMesg = fmt.Sprintf("reg user: %s", regReq.UserName)
 
     return resp, nil

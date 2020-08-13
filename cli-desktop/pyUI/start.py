@@ -17,7 +17,7 @@ from pyUI.connectSvc.connSvc import *
 
 def main():
     print("start...")
-    os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+    # os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
     # app = QApplication(sys.argv)
 
     showLoginWindow()
