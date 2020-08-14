@@ -12,19 +12,20 @@ from pyUI.msgOp.checkData import *
 
 
 class LoginWin(QWidget):
-    LoginUi = 0
-    userNameMinLength = 2
-    passwdMinLength = 2
+
 
     def __init__(self):
         super().__init__()
 
+        self.userNameMinLength = 2
+        self.passwdMinLength = 2
         # 绘制界面
         # 设置居中显示
         # self.center()
         # 加载 绘图文件
         self.LoginUi = Ui_LoginWd()
         self.LoginUi.setupUi(self)
+        # 初始化注册界面
         self.RegisterWin = RegisterWin()
         self.initUI()
 
@@ -87,8 +88,16 @@ class LoginWin(QWidget):
         userName = self.LoginUi.userNameInput.text()
         passwd = self.LoginUi.passwdInput.text()
         # 检测输入框状态
-        if (userName.__len__() < self.userNameMinLength) & (passwd.__len__() < self.passwdMinLength):
-            self.LoginUi.messageLabel.setText("请输入完整用户名和密码！")
+        if userName.__len__() < self.userNameMinLength:
+            self.LoginUi.messageLabel.setText("请输入完整用户名！")
+            # 设置提示字体为红色
+            self.LoginUi.messageLabel.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
+            # 显示提示框
+            self.LoginUi.messageLabel.setVisible(True)
+            return
+
+        if passwd.__len__() < self.passwdMinLength:
+            self.LoginUi.messageLabel.setText("请输入密码！")
             # 设置提示字体为红色
             self.LoginUi.messageLabel.setStyleSheet("QLabel{color:rgb(255,17,17,255);}")
             # 显示提示框
@@ -111,10 +120,9 @@ class LoginWin(QWidget):
         # 登录成功，隐藏登录界面，显示主界面
         # ShouMainWindow()
 
-    # 打开注册界面
-    # windowList = []
-
     def openRegisterWin(self):
+        # 打开注册界面
+
         print("Open Register...")
         # 隐藏自身
         self.hide()

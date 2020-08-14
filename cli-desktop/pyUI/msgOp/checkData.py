@@ -32,9 +32,9 @@ def CheckLoginData(userName, passwd, rmbNameSts, rmbPasswdSts):
 
 def CheckRegisterData(userName, passwd, email):
     # 注册验证
-    print(userName, passwd, email)
+    print("reg msg: ", userName, passwd, email)
     UserOp.setUserRegisterRequest(1, userName, passwd, email)
-    print(UserOp.loginRequest)
+    # print(UserOp.setUserLoginRequest)
     res, err = UserOp.UserRegister()
     if None != err:
         return False

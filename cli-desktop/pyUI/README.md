@@ -16,6 +16,7 @@ pyuic5 -o 目标文件.py 源文件.ui
 pyuic5 -o LoginUI.py LoginUI.ui
 pyuic5 -o RegisterUI.py RegisterUI.ui
 pyuic5 -o MainWindow.py MainWindow.ui
+pyuic5 -o RegisterSuccessUI.py RegisterSuccessUI.ui
 ```
 
 # proto 文件转换为 python 文件

@@ -55,7 +55,7 @@ func (usrOp UserOpSvc) UserRegister(ctx context.Context, regReq *pb.UserRegister
 
     resp.RegisterMesg = fmt.Sprintf("reg user: %s", regReq.UserName)
     resp.UserId = 1
-    resp.RegisterSts = false
+    resp.RegisterSts = true
 
     return resp, nil
 }

@@ -59,10 +59,10 @@ class UserOption(object):
             self.registerResponse = self.client.UserRegister(self.registerRequset)
         except grpc.RpcError as rpc_error:
             _LOGGER.error('Received register error: %s', rpc_error)
-            return rpc_error
+            return None, rpc_error
         else:
             _LOGGER.info('Received register message: %s', self.registerResponse)
-            return self.registerResponse
+            return self.registerResponse, None
 
 
 UserOp = UserOption()
