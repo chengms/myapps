@@ -25,7 +25,14 @@ func init()  {
 
 
 func main()  {
-    service.UserOpService()
+    // 开启和python界面互动 grpc 服务
+    go service.UserOpService()
+
+    // connect to server
+    
+
+    //  program don't eixt
+    <-(chan int)(nil)
 }
 
 //func test() {

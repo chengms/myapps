@@ -26,6 +26,7 @@ func UserOpService()  {
     pb.RegisterUserOpServer(svc, UserOpSvc)
 
     grpclog.Info("Listen on: " + UserOpAddr)
+
     _ = svc.Serve(listen)
 
 }

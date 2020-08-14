@@ -169,7 +169,7 @@ class RegisterWin(QDialog):
             return
 
         # 注册成功，提示，并关闭
-        self.RegisterSuccessWin.initUI()   # 初始化定时器
+        self.RegisterSuccessWin.initUI()   # 设置定时器启动
         self.RegisterSuccessWin.run()
         self.close()
 
