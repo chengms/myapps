@@ -204,24 +204,24 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QCommandLinkButton" name="RegisterCmdLinkButton">
+  <widget class="QPushButton" name="RegisterButton">
    <property name="geometry">
     <rect>
-     <x>410</x>
+     <x>390</x>
      <y>400</y>
-     <width>81</width>
+     <width>91</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Segoe UI</family>
      <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
-     <underline>true</underline>
-     <stylestrategy>PreferAntialias</stylestrategy>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:None;</string>
    </property>
    <property name="text">
     <string>注册</string>

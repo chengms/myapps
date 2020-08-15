@@ -67,7 +67,10 @@ class RegisterWin(QDialog):
         self.RegisterUi.RegisterPushButton.clicked.connect(self.doRegister)
 
         # 重置按钮
-        self.RegisterUi.RestButton.setIcon(QIcon(""))
+        # 设置控件是否为突出效果
+        self.RegisterUi.RestButton.setFlat(True)
+        # 设置自动填充背景
+        self.RegisterUi.RestButton.setAutoFillBackground(True)
         self.RegisterUi.RestButton.clicked.connect(self.reset)
 
         # 隐藏提示标签
