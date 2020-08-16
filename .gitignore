@@ -10,6 +10,7 @@ cli-desktop/go_build_cli_desktop
 cli-desktop/bin/*.exe
 cli-desktop/*.exe
 server/bin/*.exe
+server/go_build_server
 
 # Test binary, built with `go test -c`
 *.test
@@ -30,3 +31,5 @@ server/bin/*.exe
 # mac hide directories
 .DS_Store
 
+# ignore log file
+server/log/*.log
