@@ -3,6 +3,7 @@ package main
 import (
     "fmt"
     "server/public"
+    "server/tcp_conn"
 )
 
 func init() {
@@ -13,6 +14,8 @@ func init() {
 }
 
 func main() {
-    public.LoggerTest()
+    //public.LoggerTest()
+    tcp_conn.TcpTest()
 
 }
+

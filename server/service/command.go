@@ -1,10 +1,9 @@
 package service
 
 import (
-	"bufio"
 	"fmt"
-	"io"
 	"strings"
+	"errors"
 )
 
 /*
@@ -19,6 +18,11 @@ import (
 *  @File    : command.go
  */
 
+var (
+	InvalidMessageErr = errors.New("invalid message")
+	UnsupportedCmdErr = errors.New("unsupported cmd")
+)
+
 const (
     ProtocolName    = "MENG"
     ProtocolVersion	= "v1.0"
@@ -31,9 +35,11 @@ const (
     CmdRegister     = "REGISTER"
     CmdReceive      = "RECEIVE"
     CmdGroup        = "GROUP"
-    CmdLeave        = "LEAVE"
+    CmdLeave        = "LEAVE"			// 离开群聊
     CmdStatus       = "STATUS"
 )
+
+
 
 type BaseCmd struct {
 	Protocol string
@@ -57,22 +63,5 @@ func (s *SendCommand) String() string {
 		s.Name,
 		string(s.Data),
 	}, ProtocolSep) + "\n"
-}
-
-
-// chat/protocol/writer.go
-type CommandWriter struct {
-	writer *bufio.Writer
-}
-
-func NewCommandWriter(writer io.Writer) *CommandWriter {
-	return &CommandWriter{
-		writer: bufio.NewWriter(writer),
-	}
-}
-
-func (w *CommandWriter) Write(cmd interface{}) (err error) {
-	_, err = w.writer.WriteString(fmt.Sprintf("%v", cmd))
-	return w.writer.Flush()
 }
 
