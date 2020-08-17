@@ -1,13 +1,12 @@
 package tcp_conn
 
 import (
+    "context"
     "fmt"
+    "go/ast"
     "log"
     "net"
-    "server/service"
     "sync"
-    "time"
-    "context"
 )
 
 /*
@@ -44,13 +43,13 @@ func NewTcpChatServer() *TcpServer {
     }
 }
 
-func (t *TcpServer)Start(ctx context.Context, address string) error  {
-    l, err := net.Listen("tcp", address)
+func (t *TcpServer)Listen(ctx context.Context, address string) error  {
+    listener, err := net.Listen("tcp", address)
     if err != nil {
         return err
     }
 
-    t.Listener = l
+    t.Listener = listener
 
     log.Printf("Listening on %s", address)
 
@@ -61,41 +60,44 @@ func (t *TcpServer) Close(ctx context.Context) error {
     return t.Listener.Close()
 }
 
-
-
-func TcpTest()  {
-    listener, err := net.Listen("tcp", "127.0.0.1:30051")
-    if err != nil {
-        panic(err)
+func (t *TcpServer) Start(ctx context.Context, address string) error {
+    if err := t.Listen(ctx, address); err != nil{
+        return err
     }
 
+Loop:
     for {
-        conn, err := listener.Accept()
-        if err != nil {
-            panic(err)
+        select {
+        case <-ctx.Done():
+            fmt.Println("Chat server is shutting down...")
+            // TODO: 停止服务的具体操作
+            fmt.Println("shutdown successfully")
+            break Loop
+        default:
         }
 
-        go doServer(conn)
+        conn, err := t.Listener.Accept()
+        if err != nil {
+            fmt.Println(err)
+            continue
+        }
+
+        clientConn := t.ClientAccept(conn)
+
     }
+
+    return nil
 }
 
-func doServer(conn net.Conn)  {
-    go func() {
-        i := 0
-        for ;;i++ {
-            fmt.Println("connect time: ", i)
-            time.Sleep(1*time.Second)
-        }
+func (t *TcpServer) ClientAccept(conn net.Conn) *ClientConn {
+    fmt.Println("Accepting connection from %s", conn.RemoteAddr().String())
 
-    }()
-    for {
-        buf := make([]byte, 1024)
-        len, err := conn.Read(buf)
-        if err != nil {
-            return
-            //panic(err)
-        }
-        fmt.Println("Received data: %v\n", string(buf[:len]))
+    t.mu.Lock()
+    defer t.mu.Unlock()
+
+    cc := &ClientConn{
+        Conn: conn,
+
     }
 
 }
