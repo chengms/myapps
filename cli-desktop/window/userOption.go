@@ -38,6 +38,7 @@ func (usrOp UserOpSvc) UserLogin (ctx context.Context, loginReq *pb.LoginRequest
 
     fmt.Println(loginReq)
 
+    // 调用 tcp 发送登录信息
     if loginReq.RmbusrChk == true {
         resp.LoginSts = true
     } else {

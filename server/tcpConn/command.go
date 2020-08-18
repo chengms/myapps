@@ -27,18 +27,19 @@ const (
     ProtocolName    = "MENG"
     ProtocolVersion	= "v1.0"
 	ProtocolSep     = " "				// 分隔字符
-
-    CmdSend         = "SEND"
-    CmdBroadCase    = "BROADCAST"
-    CmdLogin        = "LOGIN"
-    CmdLogOut       = "LOGOUT"
-    CmdRegister     = "REGISTER"
-    CmdReceive      = "RECEIVE"
-    CmdGroup        = "GROUP"
-    CmdLeave        = "LEAVE"			// 离开群聊
-    CmdStatus       = "STATUS"
 )
 
+const (
+	CmdSend         = 0
+	CmdBroadCase    = 1
+	CmdLogin        = 2
+	CmdLogOut       = 3
+	CmdRegister     = 4
+	CmdReceive      = 5
+	CmdGroup        = 6
+	CmdLeave        = 7	    // 离开群聊
+	CmdStatus       = 8
+)
 
 
 type BaseCmd struct {
@@ -59,7 +60,6 @@ type SendCommand struct {
 func (s *SendCommand) String() string {
 	return strings.Join([]string{
 		s.BaseCmd.String(),
-		CmdSend,
 		s.Name,
 		string(s.Data),
 	}, ProtocolSep) + "\n"

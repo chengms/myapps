@@ -2,6 +2,7 @@ package tcpConn
 
 import (
     "bufio"
+    "cli-desktop/tools"
     "fmt"
     "net"
     "os"
@@ -17,21 +18,33 @@ import (
 *  @WebSite : chengms.com
 *  @Email   : chengms2012@163.com
 *  @TIME    : 2020/8/17 16:20
-*  @File    : commandTcp.go
+*  @File    : connTcp.go
  */
 
+type ConnServer struct {
+    SvcConn   net.Conn
+    Writer    *CommandWriter
+    Reader    *CommandReader
+}
 
+func (c *ConnServer)ConnectServer(addr string) error {
+    var err error
+    c.SvcConn, err = net.Dial("tcp", addr)
+    if err != nil {
+        return err
+    }
 
+    c.Writer = NewCommandWriter(c.SvcConn)
+    c.Reader = NewCommandReader(c.SvcConn)
 
+    return nil
+}
 
+var ConnSvc ConnServer
 
-
-
-
-
-
-
-
+func StartTcpConn() error {
+    return ConnSvc.ConnectServer(tools.Cfg.GetTcpAddr())
+}
 
 
 

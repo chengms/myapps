@@ -1,6 +1,7 @@
 package tcpConn
 
 import (
+    "errors"
     "fmt"
     "strings"
 )
@@ -17,46 +18,54 @@ import (
 *  @File    : command.go
  */
 
+var (
+    InvalidMessageErr = errors.New("invalid message")
+)
+
+const (
+    CmdSend         = 0
+    CmdBroadCase    = 1
+    CmdLogin        = 2
+    CmdLogOut       = 3
+    CmdRegister     = 4
+    CmdReceive      = 5
+    CmdGroup        = 6
+    CmdLeave        = 7	    // 离开群聊
+    CmdStatus       = 8
+)
+
 const (
     ProtocolName    = "MENG"
     ProtocolVersion	= "v1.0"
     ProtocolSep     = " "				// 分隔字符
-
-    CmdSend         = "SEND"
-    CmdBroadCase    = "BROADCAST"
-    CmdLogin        = "LOGIN"
-    CmdLogOut       = "LOGOUT"
-    CmdRegister     = "REGISTER"
-    CmdReceive      = "RECEIVE"
-    CmdGroup        = "GROUP"
-    CmdLeave        = "LEAVE"			// 离开群聊
-    CmdStatus       = "STATUS"
 )
 
 type BaseCmd struct {
-    Protocol string
-    Version  string
+    Protocol    string
+    Version     string
 }
 
 func (b *BaseCmd) String() string {
     return fmt.Sprintf("%s%s", b.Protocol, b.Version)
 }
 
+type CommandHeader struct {
+    BaseCmd
+    CmdLength   int
+    CmdType     int
+}
+
 type SendCommand struct {
     BaseCmd
-    CmdType string
-    Data string
+    Data        interface{}
 }
 
 func (s *SendCommand) String() string {
     return strings.Join([]string{
         s.BaseCmd.String(),
-        s.CmdType,
-        s.Data,
+        s.Data.(string),
     }, ProtocolSep) + "\n"
 }
-
-
 
 
 
