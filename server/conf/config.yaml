@@ -1,1 +1,14 @@
-# this server configuration
+name: myApps
+# 网络配置
+Network:
+  host: "localhost"
+  tpcPort: 40051
+  # grpcPort:
+
+
+# 日志相关配置
+Logger:
+  infoPath: "log/info.log"
+  errPath: "log/error.log"
+  loggerLevel: "DEBUG"     # 错误日志级别，默认INFO及以上会写入文件    DPANIC | DEBUG | INFO | WARN | ERROR
+

@@ -1,9 +1,9 @@
-package service
+package tcpConn
 
 import (
+	"errors"
 	"fmt"
 	"strings"
-	"errors"
 )
 
 /*
@@ -26,7 +26,7 @@ var (
 const (
     ProtocolName    = "MENG"
     ProtocolVersion	= "v1.0"
-	ProtocolSep     = " "
+	ProtocolSep     = " "				// 分隔字符
 
     CmdSend         = "SEND"
     CmdBroadCase    = "BROADCAST"

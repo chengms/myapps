@@ -22,9 +22,25 @@ import (
 
 
 
-func main() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func test() {
     //打开连接:
-    conn, err := net.Dial("tcp", "localhost:30051")
+    conn, err := net.Dial("tcp", "localhost:40051")
     if err != nil {
         //由于目标计算机积极拒绝而无法创建连接
         fmt.Println("Error dialing", err.Error())
@@ -46,6 +62,6 @@ func main() {
         if trimmedInput == "Q" {
             return
         }
-        _, err = conn.Write([]byte(trimmedClient + " says: " + trimmedInput))
+        _, err = conn.Write([]byte(trimmedClient + " says: " + trimmedInput + "\n"))
     }
 }

@@ -21,6 +21,11 @@
 ```shell script
 #  日志框架安装
 go get -u go.uber.org/zap
+#  日志配套分割工具
+go get github.com/natefinch/lumberjack
+# jsoniter 安装
+go get github.com/json-iterator/go
+
 
 
 ```

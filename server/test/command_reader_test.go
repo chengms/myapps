@@ -2,6 +2,7 @@ package test
 
 import (
     "bytes"
+    "server/tcpConn"
     "testing"
 
     "server/service"
@@ -60,14 +61,14 @@ import (
 
 func TestWriteSendMessage(t *testing.T) {
     cases := []struct {
-        cmd         *service.SendCommand
+        cmd         *tcpConn.SendCommand
         expectedMessage string
     }{
         {
-            &service.SendCommand{
-                BaseCmd: service.BaseCmd{service.ProtocolName, service.ProtocolVersion},
-                Name:        "zhenghe",
-                Data:        []byte("hello world"),
+            &tcpConn.SendCommand{
+                BaseCmd: tcpConn.BaseCmd{tcpConn.ProtocolName, tcpConn.ProtocolVersion},
+                Name:    "zhenghe",
+                Data:    []byte("hello world"),
             },
             "CHAT/1.0 SEND zhenghe hello world\n",
         },

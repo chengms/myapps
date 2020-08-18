@@ -1,4 +1,4 @@
-package tcp_conn
+package resource
 
 /*
 *  -*- coding:utf8 -*-
@@ -8,7 +8,6 @@ package tcp_conn
 *  @Author  : chengms
 *  @WebSite : chengms.com
 *  @Email   : chengms2012@163.com
-*  @TIME    : 2020/8/17 上午 9:29
-*  @File    : reader.go
+*  @TIME    : 2020/8/18 18:00
+*  @File    : sqlit.go
  */
-
