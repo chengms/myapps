@@ -4,7 +4,6 @@ import (
     "cli-desktop/public"
     "errors"
     "fmt"
-    "strconv"
 )
 
 /*
@@ -79,7 +78,9 @@ func (s *SendCommand) SendCmd(CmdType int, msg interface{}) error {
     // CmdBuf := buffer.String()
     // CmdBuf := header + data + "\n"
     CmdBuf := data + "\n"
-    CmdBuf = strconv.Itoa(len(CmdBuf)) + CmdBuf
+    length := fmt.Sprintf("%8d", len(CmdBuf))
+    fmt.Println(length)
+    CmdBuf = length + CmdBuf
     fmt.Println(CmdBuf)
     err := ConnSvc.SendMsg(CmdBuf)
     if err != nil {

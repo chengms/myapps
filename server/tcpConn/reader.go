@@ -43,8 +43,8 @@ func (r *CommandReader) Read() (cmd interface{}, err error) {
 
     // userInfo := user.UserInfo{}
     bufLen := binary.BigEndian.Uint32(lenBuf)
-    fmt.Println("Revc: ", bufLen)
-    
+    fmt.Println("Revc:", bufLen)
+
     // line, _, err := r.reader.ReadLine()
     line := make([]byte, bufLen)
     _, err = r.reader.Read(line)
@@ -52,7 +52,7 @@ func (r *CommandReader) Read() (cmd interface{}, err error) {
         return
     }
 
-    fmt.Println("Revc: ", string(line))
+    fmt.Println("Revc:", string(line))
 
    parts := strings.Split(string(line), ProtocolSep)
 
