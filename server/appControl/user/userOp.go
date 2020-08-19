@@ -1,5 +1,7 @@
 package user
 
+import "server/tcpConn"
+
 /*
 *  -*- coding:utf8 -*-
 *
@@ -12,4 +14,17 @@ package user
 *  @File    : userOp.go
  */
 
+
+type UserInfo struct {
+    tcpConn.CommandHeader
+    UserId      int
+    UserName    string
+    UserPasswd  string
+    Email       string
+    UserStatus  string
+}
+
+type UserOption struct {
+    UserInfo
+}
 

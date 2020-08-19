@@ -3,7 +3,6 @@ package app
 import (
     "cli-desktop/public"
     "cli-desktop/tcpConn"
-    "unsafe"
 )
 
 /*
@@ -19,6 +18,7 @@ import (
  */
 
 type UserInfo struct {
+    tcpConn.CommandHeader
     UserId      int
     UserName    string
     UserPasswd  string
@@ -32,6 +32,8 @@ type UserOption struct {
 }
 
 func (u *UserOption)SetUserMsg(id int, name, passwd string)  {
+    u.Protocol = tcpConn.ProtocolName
+    u.Vserion = tcpConn.ProtocolVersion
     u.UserId = id
     u.UserName = name
     u.UserPasswd = passwd
@@ -39,26 +41,27 @@ func (u *UserOption)SetUserMsg(id int, name, passwd string)  {
     u.UserStatus = "unknown"
 }
 
-func (u *UserOption)LoginMsg(name, passwd string)  {
-    u.SetUserMsg(11, name, passwd)
+func (u *UserOption)LoginMsg(id int, name, passwd string)  {
+    u.SetUserMsg(id, name, passwd)
+    u.CmdType = tcpConn.CmdLogin
     //sendBuf := tcpConn.NewSendCommand()
     //sendBuf.Data = u.UserInfo
 }
 
-func (u *UserOption)RegisterMsg(name, passwd, email string) {
-    u.SetUserMsg(11, name, passwd)
+func (u *UserOption)RegisterMsg(id int, name, passwd, email string) {
+    u.SetUserMsg(id, name, passwd)
     u.Email = email
-
+    u.CmdType = tcpConn.CmdRegister
 }
 
 var UserOp UserOption
 
-func UserLogin(name, passwd, email string) error {
-    UserOp.RegisterMsg(name, passwd, email)
-    length := unsafe.Sizeof(UserOp)
+func UserLogin(id int, name, passwd string) error {
+    UserOp.LoginMsg(id, name, passwd)
+    // length := unsafe.Sizeof(UserOp)
 
     sendCmd := tcpConn.NewSendCommand()
-    err := sendCmd.SendCmd(int(length), UserOp)
+    err := sendCmd.SendCmd(UserOp.CmdType, UserOp)
     if err != nil {
         public.Loggerf.Error(err)
         return err
@@ -66,3 +69,23 @@ func UserLogin(name, passwd, email string) error {
 
     return nil
 }
+
+func UserRegister(id int, name, passwd, email string) error {
+    UserOp.RegisterMsg(id, name, passwd, email)
+    // length := unsafe.Sizeof(UserOp)
+
+    sendCmd := tcpConn.NewSendCommand()
+    err := sendCmd.SendCmd(UserOp.CmdType, UserOp)
+    if err != nil {
+        public.Loggerf.Error(err)
+        return err
+    }
+
+    return nil
+}
+
+func LoginTest()  {
+    _ = UserRegister(11,"zhangsan", "123456", "sds@asd.com")
+}
+
+

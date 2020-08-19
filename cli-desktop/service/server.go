@@ -3,6 +3,7 @@ package service
 import (
     "cli-desktop/public"
     "cli-desktop/tcpConn"
+    "fmt"
 )
 
 /*
@@ -17,8 +18,12 @@ import (
 *  @File    : server.go
  */
 
+// var ServerReady chan int
+
 
 func StartServer()  {
+    ServerReady := make(chan int)
+
     // 开启和python界面互动 grpc 服务
     go UserOpService()
 
@@ -32,10 +37,14 @@ func StartServer()  {
             panic(err)
             return
         }
+        fmt.Println("connect server...")
+
+        ServerReady <- 1
 
     }()
 
-    //
+    // 等待所有服务准备完成
+    _ = <- ServerReady
 
 }
 

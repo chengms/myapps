@@ -14,11 +14,12 @@ import (
     "cli-desktop/public"
     "cli-desktop/service"
     "fmt"
-    //"golang.org/x/net/context"
-    //"google.golang.org/grpc"
-    //"log"
+    // "golang.org/x/net/context"
+    // "google.golang.org/grpc"
+    // "log"
 
 )
+
 
 func init()  {
    fmt.Println("start...")
@@ -37,7 +38,11 @@ func init()  {
 func main()  {
 
     service.StartServer()
-    _ = app.UserLogin("zhangsan", "123456", "sds@asd.com")
+
+    public.TestJson()
+    fmt.Println("======")
+    app.LoginTest()
+
 
     //  program don't eixt
     <-(chan int)(nil)

@@ -35,6 +35,7 @@ func (c *ConnServer)ConnectServer(addr string) error {
     if err != nil {
         return err
     }
+    public.Loggerf.Info("Connect to Addr: ", addr)
 
     c.Writer = NewCommandWriter(c.SvcConn)
     c.Reader = NewCommandReader(c.SvcConn)
@@ -42,15 +43,14 @@ func (c *ConnServer)ConnectServer(addr string) error {
     return nil
 }
 
-func (c *ConnServer)SendMsg(msg string) error {
-    err := c.Writer.Write([]byte(msg))
+func (c *ConnServer)SendMsg(msg interface{}) error {
+    err := c.Writer.Write(msg)
     return err
 }
 
 func TcpConnectionToSvc() error {
     return ConnSvc.ConnectServer(public.Cfg.GetTcpAddr())
 }
-
 
 
 
@@ -98,3 +98,6 @@ func test() {
 //    }
 //    fmt.Println(reply)
 //}
+
+
+

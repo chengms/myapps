@@ -14,9 +14,12 @@ package tcpConn
 
 import (
     "bufio"
+    "encoding/binary"
+    // "server/appControl/user"
     "fmt"
     "io"
     "strings"
+    // "unsafe"
 
     //"strings"
 
@@ -35,12 +38,21 @@ func NewCommandReader(reader io.Reader) *CommandReader {
 
 //
 func (r *CommandReader) Read() (cmd interface{}, err error) {
-   line, _, err := r.reader.ReadLine()
-   if err != nil {
-       return
-   }
+    lenBuf := make([]byte, 4)
+    _, err = r.reader.Read(lenBuf)
 
-   fmt.Println("Revc: ", string(line))
+    // userInfo := user.UserInfo{}
+    bufLen := binary.BigEndian.Uint32(lenBuf)
+    fmt.Println("Revc: ", bufLen)
+    
+    // line, _, err := r.reader.ReadLine()
+    line := make([]byte, bufLen)
+    _, err = r.reader.Read(line)
+    if err != nil {
+        return
+    }
+
+    fmt.Println("Revc: ", string(line))
 
    parts := strings.Split(string(line), ProtocolSep)
 

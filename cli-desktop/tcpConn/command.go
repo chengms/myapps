@@ -3,7 +3,8 @@ package tcpConn
 import (
     "cli-desktop/public"
     "errors"
-    "unsafe"
+    "fmt"
+    "strconv"
 )
 
 /*
@@ -47,32 +48,40 @@ type BasrCmd struct {
 
 type CommandHeader struct {
     BasrCmd             `json:"BasrCmd"`
-    CmdLength   int     `json:"CmdLength"`
+    // CmdLength   int     `json:"CmdLength"`
     CmdType     int     `json:"CmdType"`
 }
 
-func NewCommandHeader(length, cmdType int)  (string, error) {
-    var header = CommandHeader{
+func NewCommandHeader(cmdType int) CommandHeader {
+    return CommandHeader{
                     BasrCmd: BasrCmd{
                         Protocol: ProtocolName,
                         Vserion: ProtocolVersion,
                     },
-                    CmdLength: 0,
+                    // CmdLength: 0,
                     CmdType: cmdType,
         }
-        header.CmdLength = int(unsafe.Sizeof(header)) + length
-    return public.Jsonit.MarshalToString(header)
+        // header.CmdLength = int(unsafe.Sizeof(header)) + length
+
+    // return public.Jsonit.Marshal(header)
 }
 
 type SendCommand struct {}
 
-func (s *SendCommand) SendCmd(length int, msg interface{}) error {
-    header, _ := NewCommandHeader(int(length), CmdLogin)
+func (s *SendCommand) SendCmd(CmdType int, msg interface{}) error {
     data, _ := public.Jsonit.MarshalToString(msg)
 
+    // var buffer bytes.Buffer
+    // buffer.Write(header)
+    // buffer.Write(data)
+    // buffer.Write([]byte("\n"))
     //fmt.Println(header, data)
-
-    err := ConnSvc.SendMsg(header + data)
+    // CmdBuf := buffer.String()
+    // CmdBuf := header + data + "\n"
+    CmdBuf := data + "\n"
+    CmdBuf = strconv.Itoa(len(CmdBuf)) + CmdBuf
+    fmt.Println(CmdBuf)
+    err := ConnSvc.SendMsg(CmdBuf)
     if err != nil {
         return err
     }
