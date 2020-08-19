@@ -1,7 +1,7 @@
 name: myApps
 # 网络配置
 Network:
-  host: "127.0.0.1"
+  host: "localhost"
   tpcPort: 40051
   # grpcPort:
 

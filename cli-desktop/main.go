@@ -10,8 +10,9 @@ package main
  */
 
 import (
+    "cli-desktop/app"
+    "cli-desktop/public"
     "cli-desktop/service"
-
     "fmt"
     //"golang.org/x/net/context"
     //"google.golang.org/grpc"
@@ -21,31 +22,24 @@ import (
 
 func init()  {
    fmt.Println("start...")
+
+   // 初始化配置文件
+   public.InitCfg()
+
+    // 初始化日志组件
+    public.InitLogger()
+   // 初始化 三方模块
+
+
 }
 
 
 func main()  {
-    // 开启和python界面互动 grpc 服务
-    go service.UserOpService()
 
-    // connect to server
-
+    service.StartServer()
+    _ = app.UserLogin("zhangsan", "123456", "sds@asd.com")
 
     //  program don't eixt
     <-(chan int)(nil)
 }
 
-//func test() {
-//    conn, err := grpc.Dial("127.0.0.1:19999", grpc.WithInsecure())
-//    if err != nil {
-//        log.Fatal(err)
-//    }
-//    defer conn.Close()
-//
-//    client := pb.NewComputeClient(conn)
-//    reply, err := client.SayHello(context.Background(), &pb.HelloRequest{Helloworld: "lalala"})
-//    if err != nil {
-//        log.Fatal(err)
-//    }
-//    fmt.Println(reply)
-//}

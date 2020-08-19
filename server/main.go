@@ -14,7 +14,7 @@ func init() {
     // 初始化日志组件
     public.InitLogger()
 
-    // 其他
+    //
 
     public.Loggerf.Info("Server init successfully")
 }
@@ -23,8 +23,13 @@ func main() {
     //public.LoggerTest()
     //tcp_conn.TcpTest()
     //public.TestConf()
-    service.RunTcpServer()
+    //public.TestJson()
+    // 开启 tcp 监听
+    go service.RunTcpServer()
 
+    // 退出时关闭logger
     defer public.CloseLogger()
+
+    <-(chan int)(nil)
 }
 

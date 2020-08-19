@@ -2,7 +2,7 @@ package tcpConn
 
 import (
     "bufio"
-    "cli-desktop/tools"
+    "cli-desktop/public"
     "fmt"
     "net"
     "os"
@@ -27,6 +27,8 @@ type ConnServer struct {
     Reader    *CommandReader
 }
 
+var ConnSvc ConnServer
+
 func (c *ConnServer)ConnectServer(addr string) error {
     var err error
     c.SvcConn, err = net.Dial("tcp", addr)
@@ -40,10 +42,13 @@ func (c *ConnServer)ConnectServer(addr string) error {
     return nil
 }
 
-var ConnSvc ConnServer
+func (c *ConnServer)SendMsg(msg string) error {
+    err := c.Writer.Write([]byte(msg))
+    return err
+}
 
-func StartTcpConn() error {
-    return ConnSvc.ConnectServer(tools.Cfg.GetTcpAddr())
+func TcpConnectionToSvc() error {
+    return ConnSvc.ConnectServer(public.Cfg.GetTcpAddr())
 }
 
 
@@ -78,3 +83,18 @@ func test() {
         _, err = conn.Write([]byte(trimmedClient + " says: " + trimmedInput + "\n"))
     }
 }
+
+//func test() {
+//    conn, err := grpc.Dial("127.0.0.1:19999", grpc.WithInsecure())
+//    if err != nil {
+//        log.Fatal(err)
+//    }
+//    defer conn.Close()
+//
+//    client := pb.NewComputeClient(conn)
+//    reply, err := client.SayHello(context.Background(), &pb.HelloRequest{Helloworld: "lalala"})
+//    if err != nil {
+//        log.Fatal(err)
+//    }
+//    fmt.Println(reply)
+//}

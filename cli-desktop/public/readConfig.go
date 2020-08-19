@@ -1,4 +1,4 @@
-package tools
+package public
 
 import (
     yaml "gopkg.in/yaml.v2"

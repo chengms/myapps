@@ -1,9 +1,9 @@
 package tcpConn
 
 import (
+    "cli-desktop/public"
     "errors"
-    "fmt"
-    "strings"
+    "unsafe"
 )
 
 /*
@@ -40,32 +40,48 @@ const (
     ProtocolSep     = " "				// 分隔字符
 )
 
-type BaseCmd struct {
-    Protocol    string
-    Version     string
-}
-
-func (b *BaseCmd) String() string {
-    return fmt.Sprintf("%s%s", b.Protocol, b.Version)
+type BasrCmd struct {
+    Protocol    string  `json:"Protocol"`
+    Vserion     string  `json:"Version"`
 }
 
 type CommandHeader struct {
-    BaseCmd
-    CmdLength   int
-    CmdType     int
+    BasrCmd             `json:"BasrCmd"`
+    CmdLength   int     `json:"CmdLength"`
+    CmdType     int     `json:"CmdType"`
 }
 
-type SendCommand struct {
-    BaseCmd
-    Data        interface{}
+func NewCommandHeader(length, cmdType int)  (string, error) {
+    var header = CommandHeader{
+                    BasrCmd: BasrCmd{
+                        Protocol: ProtocolName,
+                        Vserion: ProtocolVersion,
+                    },
+                    CmdLength: 0,
+                    CmdType: cmdType,
+        }
+        header.CmdLength = int(unsafe.Sizeof(header)) + length
+    return public.Jsonit.MarshalToString(header)
 }
 
-func (s *SendCommand) String() string {
-    return strings.Join([]string{
-        s.BaseCmd.String(),
-        s.Data.(string),
-    }, ProtocolSep) + "\n"
+type SendCommand struct {}
+
+func (s *SendCommand) SendCmd(length int, msg interface{}) error {
+    header, _ := NewCommandHeader(int(length), CmdLogin)
+    data, _ := public.Jsonit.MarshalToString(msg)
+
+    //fmt.Println(header, data)
+
+    err := ConnSvc.SendMsg(header + data)
+    if err != nil {
+        return err
+    }
+
+    return nil
 }
 
+func NewSendCommand() SendCommand {
+    return SendCommand{}
+}
 
 
