@@ -52,10 +52,16 @@ func main()  {
 func test11()  {
     var n1 int
     n1 = 1024
+    //hexstr := "400"
+    //s, _ := strconv.ParseInt(hexstr, 16, 32)
+    //fmt.Printf("hexstr: %d\n", s)
+    //fmt.Printf("hexstr: %x\n", s)
     ss := fmt.Sprintf("%08x", n1)
     fmt.Println(len(ss))
     fmt.Println(ss)
-    fmt.Println(strconv.Atoi(string(ss)))
+    nn, _ := strconv.ParseInt(ss, 16, 32)
+    fmt.Println("int:", nn)
+    fmt.Printf("hex: %8x\n", nn)
     str := "asdalllaaaa"
     buf := ss + str
 
