@@ -10,10 +10,10 @@ package main
  */
 
 import (
-    "cli-desktop/app"
     "cli-desktop/public"
-    "cli-desktop/service"
     "fmt"
+    "strconv"
+
     // "golang.org/x/net/context"
     // "google.golang.org/grpc"
     // "log"
@@ -37,14 +37,26 @@ func init()  {
 
 func main()  {
 
-    service.StartServer()
+    //service.StartServer()
 
-    public.TestJson()
     fmt.Println("======")
-    app.LoginTest()
-
+    //public.TestJson()
+    //app.LoginTest()
+    test11()
 
     //  program don't eixt
     <-(chan int)(nil)
 }
 
+func test11()  {
+    var n1 int
+    n1 = 1024
+    ss := fmt.Sprintf("%08x", n1)
+    fmt.Println(len(ss))
+    fmt.Println(ss)
+    fmt.Println(strconv.Atoi(string(ss)))
+    str := "asdalllaaaa"
+    buf := ss + str
+    fmt.Println(len(buf),"buf:", buf)
+
+}

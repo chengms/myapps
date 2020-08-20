@@ -28,3 +28,8 @@ type UserOption struct {
     UserInfo
 }
 
+func (u *UserInfo)CheckLogin() error{
+
+    return nil
+}
+

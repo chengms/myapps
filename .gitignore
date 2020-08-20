@@ -33,3 +33,5 @@ server/go_build_server
 
 # ignore log file
 server/log/*.log
+cli-desktop/log/*.log
+
