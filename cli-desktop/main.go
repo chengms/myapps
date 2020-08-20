@@ -45,7 +45,8 @@ func main()  {
     test11()
 
     //  program don't eixt
-    <-(chan int)(nil)
+    //<-(chan int)(nil)
+
 }
 
 func test11()  {
@@ -57,6 +58,7 @@ func test11()  {
     fmt.Println(strconv.Atoi(string(ss)))
     str := "asdalllaaaa"
     buf := ss + str
+
     fmt.Println(len(buf),"buf:", buf)
 
 }
