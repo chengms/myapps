@@ -1,0 +1,29 @@
+# 编译输出文件
+build/
+*.o
+*.a
+*.so
+*.elf
+*.bin
+*.hex
+*.map
+
+# 调试文件
+*.gdb
+*.dSYM/
+
+# 编辑器和IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 日志文件
+*.log
+
+# 临时文件
+tmp/
+temp/
+*.tmp
