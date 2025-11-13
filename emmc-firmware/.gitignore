@@ -1,0 +1,32 @@
+# 构建输出
+build/
+*.o
+*.a
+*.so
+*.exe
+
+# 编译文件
+*.d
+*.depend
+
+# IDE文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.tmp
+*.log
+*.bak
+
+# CMake生成文件
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# 可执行文件
+emmc_firmware
+libemmc.a
